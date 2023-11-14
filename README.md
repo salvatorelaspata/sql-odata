@@ -1,0 +1,86 @@
+# Platformatic DB API
+
+This is a generated [Platformatic DB](https://docs.platformatic.dev/docs/reference/db/introduction) application.
+
+## Requirements
+
+Platformatic supports macOS, Linux and Windows ([WSL](https://docs.microsoft.com/windows/wsl/) recommended).
+You'll need to have [Node.js](https://nodejs.org/) >= v18.8.0 or >= v20.6.0
+
+## Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Apply migrations:
+
+```bash
+npm run migrate
+```
+
+
+## Usage
+
+Run the API with:
+
+```bash
+npm start
+```
+
+### Explore
+- ⚡ The Platformatic DB server is running at http://localhost:3042/
+- 📔 View the REST API's Swagger documentation at http://localhost:3042/documentation/
+- 🔍 Try out the GraphiQL web UI at http://localhost:3042/graphiql
+
+
+# oData Integration
+
+## Overview
+
+oData is a RESTful API standard protocol for querying and updating data. It is a standard that is used by many enterprise applications and is supported by many platforms.
+
+This integration provides a RESTful API that is compatible with the oData standard. It is a wrapper around the Platformatic DB API.
+
+## Docs
+
+- [oData](https://www.odata.org/)
+- [Terminology](https://www.odata.org/documentation/odata-version-2-0/terminology/)
+- [RFC oData V1](https://docs.oasis-open.org/odata/odata-openapi/v1.0/odata-openapi-v1.0.html)
+- [RFC oData V4](https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html)
+
+## Crud Operations
+
+In oData Service the crud operations are mapped to the following HTTP methods:
+
+| HTTP Method | oData Operation | Description                                                                                         |
+| ----------- | --------------- | --------------------------------------------------------------------------------------------------- |
+| GET         | Query           | Retrieves the collection of resources consistent with the query options present in the URL (array). |
+| GET         | Read            | Retrieves a single resource the keys provided (object).                                             |
+| POST        | Create          | Creates a new resource.                                                                             |
+| PUT         | Update          | Updates an existing resource.                                                                       |
+| DELETE      | Delete          | Deletes an existing resource.                                                                       |
+
+## Query Options (GET)
+
+oData query options are provided as query parameters in the URL.
+
+| Query Option | Description                                                                                         |
+| ------------ | --------------------------------------------------------------------------------------------------- |
+| $filter      | Filters the collection of resources based on a Boolean condition.                                   |
+| $select      | Selects a subset of properties from each resource.                                                  |
+| $expand      | Expands related entities inline.                                                                    |
+| $orderby     | Sorts the collection of resources in ascending or descending order based on one or more properties. |
+| $top         | Returns only the first n resources in the collection.                                               |
+| $skip        | Skips the first n resources in the collection.                                                      |
+| $count       | Returns the total count of resources in the collection.                                             |
+
+> !!! the query options are permitter in the GET method only.
+
+## oData Query
+
+```bash
+curl -X GET "http://localhost:3042/odata/Products?$filter=contains(name,'Product')" -H "accept: application/json"
+```
