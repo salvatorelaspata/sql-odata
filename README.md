@@ -34,6 +34,7 @@ npm start
 - ⚡ The Platformatic DB server is running at http://localhost:3042/
 - 📔 View the REST API's Swagger documentation at http://localhost:3042/documentation/
 - 🔍 Try out the GraphiQL web UI at http://localhost:3042/graphiql
+- ****!!! The oData API is available at http://localhost:3042/odata****
 
 
 # oData Integration
@@ -58,10 +59,10 @@ In oData Service the crud operations are mapped to the following HTTP methods:
 | HTTP Method | oData Operation | Description                                                                                         |
 | ----------- | --------------- | --------------------------------------------------------------------------------------------------- |
 | GET         | Query           | Retrieves the collection of resources consistent with the query options present in the URL (array). |
-| GET         | Read            | Retrieves a single resource the keys provided (object).                                             |
+| GET         | Read            | Retrieves a single resource from the keys provided (object).                                        |
 | POST        | Create          | Creates a new resource.                                                                             |
 | PUT         | Update          | Updates an existing resource.                                                                       |
-| DELETE      | Delete          | Deletes an existing resource.                                                                       |
+| DELETE      | Delete          | Deletes an existing resource from the keys provided.                                                |
 
 ## Query Options (GET)
 
@@ -79,8 +80,15 @@ oData query options are provided as query parameters in the URL.
 
 > !!! the query options are permitter in the GET method only.
 
-## oData Query
+## Enpoints
 
-```bash
-curl -X GET "http://localhost:3042/odata/Products?$filter=contains(name,'Product')" -H "accept: application/json"
-```
+| Crud Operation | HTTP Method | Endpoint               | Description                                                                                         |
+| -------------- | ----------- | ---------------------- | --------------------------------------------------------------------------------------------------- |
+| Query          | GET         | /odata/{entity}        | Retrieves the collection of resources consistent with the query options present in the URL (array). |
+| Read           | GET         | /odata/{entity}({key}) | Retrieves a single resource the keys provided (object).                                             |
+| Create         | POST        | /odata/{entity}        | Creates a new resource.                                                                             |
+| Update         | PUT         | /odata/{entity}({key}) | Updates an existing resource.                                                                       |
+| Delete         | DELETE      | /odata/{entity}({key}) | Deletes an existing resource.                                                                       |
+
+> !!! {entity} rappresent the name of the entity, {key} rappresent the key of the entity.
+> In case of multiple keys, the keys are separated by comma (eg. {entity}(Id='3',Name='salvatore') ).
