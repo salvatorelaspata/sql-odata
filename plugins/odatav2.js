@@ -16,6 +16,7 @@ const _oDataV2 = async function (fastify, opts, done) {
     reply.type('application/xml').send(composeXml({ entities }))
   })
   createCrudRoutes(fastify, entities)
+  done()
 }
 
 /**
@@ -37,6 +38,6 @@ module.exports = async function (fastify, opts, done) {
 // TODO
 // [ ] Prevedere la gestione della label per le property
 // [ ] Gestire MaxLength="15" Unicode="true" FixedLength="false" Precision="15" Scale="0"
-// [ ] Gestire le relazioni
+// [ ] Gestire le relazioni Association
 // [ ] Gestire crud: GET Query, GET Read, POST Create, PUT Update, DELETE Delete
 // [ ] Gestire le query option (se necessario) $filter, $select, $expand, $orderby, $top, $skip, $count, $search, $format
