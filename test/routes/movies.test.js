@@ -47,3 +47,7 @@ test('movies', async (t) => {
     }])
   }
 })
+
+// add $metadata test
+// add $filter test
+// add $select test
