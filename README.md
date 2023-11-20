@@ -54,6 +54,45 @@ oData query options are provided as query parameters in the URL.
 > !!! {entity} rappresent the name of the entity, {key} rappresent the key of the entity.
 > In case of multiple keys, the keys are separated by comma (eg. {entity}(Id='3',Name='salvatore') ).
 
+
+## Examples
+
+### $metadata
+
+GET: `{{host}}/v2/$metadata`
+
+### GET - query: 
+
+`{{host}}/v2/Movies`
+
+`{{host}}/v2/Movies?$filter=title eq 'asd'&$select=title`
+
+$expand: `{{host}}/v2/Movies?$expand=Quotes` Coming soon...
+
+### GET - read: 
+
+`{{host}}/v2/Movies('0')`
+
+Association: `{{host}}/v2/Movies('0')/Quotes`
+
+### POST - create: 
+
+`{{host}}/v2/Movies`
+
+Coming soon...
+
+### PUT - update: 
+
+`{{host}}/v2/Movies('0')`
+
+Coming soon...
+
+### DELETE - delete: 
+
+`{{host}}/v2/Movies('0')`
+
+Coming soon...
+
 # Platformatic DB API
 
 This is a generated [Platformatic DB](https://docs.platformatic.dev/docs/reference/db/introduction) application.
