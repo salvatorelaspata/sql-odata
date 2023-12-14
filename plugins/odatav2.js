@@ -3,7 +3,7 @@
 'use strict'
 
 const composeXml = require('../lib/util/xml');
-const createCrudRoutes = require('../lib/util/v2-routes');
+const createCrudRoutes = require('../lib/v2-routes');
 
 /**
  * Registers the Routing v2.
