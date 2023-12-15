@@ -10,10 +10,10 @@ const createCrudRoutes = require('../lib/v2-routes');
  * @param {import('fastify').FastifyInstance} fastify - The Fastify instance.
  * @param {import('fastify').FastifyOptions} opts - The Fastify options.
  */
-const _oDataV2 = async function (fastify, opts, done) {
+const _oDataV2 = async function (fastify, { ns }, done) {
   const entities = fastify.platformatic.entities;
   fastify.get('/$metadata', async (request, reply) => {
-    reply.type('application/xml').send(composeXml({ entities }))
+    reply.type('application/xml').send(composeXml({ ns: request.ns, entities }))
   })
   createCrudRoutes(fastify, entities)
   done()
@@ -29,8 +29,8 @@ module.exports = async function (fastify, opts, done) {
 
   await fastify.register(require('fastify-xml-body-parser'))
 
+  fastify.decorateRequest('ns', 'northwind')
   await fastify.register(_oDataV2, { prefix: '/v2' })
-
   fastify.decorate('odata', 'v2')
   done()
 }
