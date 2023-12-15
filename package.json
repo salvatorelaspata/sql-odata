@@ -1,12 +1,13 @@
 {
   "scripts": {
     "start": "platformatic start",
-    "test": "node --test test/*/*.test.js",
+    "test": "node --test test/**/**/*.test.js",
     "migrate": "platformatic db migrations apply",
     "dev": "platformatic start --inspect"
   },
   "devDependencies": {
-    "fastify": "^4.24.3"
+    "fastify": "^4.24.3",
+    "xml2js": "^0.6.2"
   },
   "dependencies": {
     "@platformatic/db": "^1.10.0",
